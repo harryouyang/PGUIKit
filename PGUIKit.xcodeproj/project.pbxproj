@@ -1,0 +1,463 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1167A00A1BC8E45500766C67 /* PGBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1167A0011BC8E45500766C67 /* PGBaseViewController.m */; };
+		1167A00B1BC8E45500766C67 /* PGNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1167A0031BC8E45500766C67 /* PGNavigationViewController.m */; };
+		1167A00C1BC8E45500766C67 /* PGUIExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = 1167A0051BC8E45500766C67 /* PGUIExtend.m */; };
+		1167A00D1BC8E45500766C67 /* PGUIKitUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 1167A0091BC8E45500766C67 /* PGUIKitUtil.m */; };
+		1167A0101BC8E4BF00766C67 /* PGProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1167A00F1BC8E4BF00766C67 /* PGProgressView.m */; };
+		1167A01C1BC8EB2400766C67 /* PGBaseViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1167A0001BC8E45500766C67 /* PGBaseViewController.h */; };
+		1167A01D1BC8EB2700766C67 /* PGNavigationViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1167A0021BC8E45500766C67 /* PGNavigationViewController.h */; };
+		1167A01E1BC8EB2900766C67 /* PGProgressView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1167A00E1BC8E4BF00766C67 /* PGProgressView.h */; };
+		1167A01F1BC8EB2A00766C67 /* PGUIExtend.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1167A0041BC8E45500766C67 /* PGUIExtend.h */; };
+		1167A0201BC8EB2C00766C67 /* PGUIHelper.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1167A0061BC8E45500766C67 /* PGUIHelper.h */; };
+		1167A0211BC8EB3500766C67 /* PGUIKit.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1167A0071BC8E45500766C67 /* PGUIKit.h */; };
+		1167A0221BC8EB3700766C67 /* PGUIKitUtil.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1167A0081BC8E45500766C67 /* PGUIKitUtil.h */; };
+		116AAEE11BCA17CC00D7F350 /* PGScreenAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 116AAEE01BCA17CC00D7F350 /* PGScreenAdapter.m */; };
+		116AAEE21BCA267F00D7F350 /* PGScreenAdapter.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 116AAEDF1BCA17CC00D7F350 /* PGScreenAdapter.h */; };
+		117227501C1FA6F100ED9D20 /* PGViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1172274F1C1FA6F100ED9D20 /* PGViewController.m */; };
+		117227531C1FA77200ED9D20 /* PGNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 117227521C1FA77200ED9D20 /* PGNavBar.m */; };
+		117227541C1FBC8000ED9D20 /* PGViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1172274E1C1FA6F100ED9D20 /* PGViewController.h */; };
+		117227551C1FBC8600ED9D20 /* PGNavBar.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 117227511C1FA77200ED9D20 /* PGNavBar.h */; };
+		119BCED61BCE029700CE65AD /* PGImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 119BCEC61BCE029700CE65AD /* PGImageView.m */; };
+		119BCED71BCE029700CE65AD /* PGImageWheel.m in Sources */ = {isa = PBXBuildFile; fileRef = 119BCEC81BCE029700CE65AD /* PGImageWheel.m */; };
+		119BCED81BCE029700CE65AD /* PGLoadMoreFootView.m in Sources */ = {isa = PBXBuildFile; fileRef = 119BCECA1BCE029700CE65AD /* PGLoadMoreFootView.m */; };
+		119BCED91BCE029700CE65AD /* PGPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 119BCECC1BCE029700CE65AD /* PGPageControl.m */; };
+		119BCEDA1BCE029700CE65AD /* PGRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 119BCECE1BCE029700CE65AD /* PGRefreshView.m */; };
+		119BCEDB1BCE029700CE65AD /* PGTableCellBackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 119BCED11BCE029700CE65AD /* PGTableCellBackView.m */; };
+		119BCEDC1BCE029700CE65AD /* PGTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 119BCED31BCE029700CE65AD /* PGTableView.m */; };
+		119BCEDD1BCE029700CE65AD /* PGTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 119BCED51BCE029700CE65AD /* PGTableViewCell.m */; };
+		119BCEDE1BCE02A000CE65AD /* PGImageView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 119BCEC51BCE029700CE65AD /* PGImageView.h */; };
+		119BCEDF1BCE02A200CE65AD /* PGImageWheel.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 119BCEC71BCE029700CE65AD /* PGImageWheel.h */; };
+		119BCEE01BCE02A400CE65AD /* PGLoadMoreFootView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 119BCEC91BCE029700CE65AD /* PGLoadMoreFootView.h */; };
+		119BCEE11BCE02A500CE65AD /* PGPageControl.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 119BCECB1BCE029700CE65AD /* PGPageControl.h */; };
+		119BCEE21BCE02A700CE65AD /* PGRefreshView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 119BCECD1BCE029700CE65AD /* PGRefreshView.h */; };
+		119BCEE31BCE02AA00CE65AD /* PGTableCellBackView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 119BCED01BCE029700CE65AD /* PGTableCellBackView.h */; };
+		119BCEE41BCE02AC00CE65AD /* PGTableView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 119BCED21BCE029700CE65AD /* PGTableView.h */; };
+		119BCEE51BCE02AD00CE65AD /* PGTableViewCell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 119BCED41BCE029700CE65AD /* PGTableViewCell.h */; };
+		11DC50361BFEF71100EF603E /* PGBaseRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 11DC50351BFEF71100EF603E /* PGBaseRefresh.m */; };
+		11DC50371BFF01CE00EF603E /* PGBaseRefresh.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 11DC50341BFEF71100EF603E /* PGBaseRefresh.h */; };
+		11DC503A1BFF031C00EF603E /* PGRefreshRotate.m in Sources */ = {isa = PBXBuildFile; fileRef = 11DC50391BFF031C00EF603E /* PGRefreshRotate.m */; };
+		11DC503E1BFF057000EF603E /* PGAnimationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 11DC503D1BFF057000EF603E /* PGAnimationItem.m */; };
+		11DC50411BFF059100EF603E /* PGAnimationGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 11DC50401BFF059100EF603E /* PGAnimationGroup.m */; };
+		11DC50441BFF05AA00EF603E /* PGAnimationSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 11DC50431BFF05AA00EF603E /* PGAnimationSequence.m */; };
+		11DC50451BFF09A500EF603E /* PGAnimationItem.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 11DC503C1BFF057000EF603E /* PGAnimationItem.h */; };
+		11DC50461BFF09A600EF603E /* PGAnimationGroup.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 11DC503F1BFF059100EF603E /* PGAnimationGroup.h */; };
+		11DC50471BFF09A800EF603E /* PGAnimationSequence.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 11DC50421BFF05AA00EF603E /* PGAnimationSequence.h */; };
+		11DC504A1BFF118300EF603E /* PGRefreshRotate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 11DC50381BFF031C00EF603E /* PGRefreshRotate.h */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		11DDE85B1BC89A520046FF2C /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "${SRCROOT}/OutPut/include";
+			dstSubfolderSpec = 0;
+			files = (
+				1167A01C1BC8EB2400766C67 /* PGBaseViewController.h in CopyFiles */,
+				119BCEDE1BCE02A000CE65AD /* PGImageView.h in CopyFiles */,
+				117227541C1FBC8000ED9D20 /* PGViewController.h in CopyFiles */,
+				117227551C1FBC8600ED9D20 /* PGNavBar.h in CopyFiles */,
+				11DC50451BFF09A500EF603E /* PGAnimationItem.h in CopyFiles */,
+				11DC50461BFF09A600EF603E /* PGAnimationGroup.h in CopyFiles */,
+				11DC50471BFF09A800EF603E /* PGAnimationSequence.h in CopyFiles */,
+				11DC504A1BFF118300EF603E /* PGRefreshRotate.h in CopyFiles */,
+				119BCEDF1BCE02A200CE65AD /* PGImageWheel.h in CopyFiles */,
+				119BCEE01BCE02A400CE65AD /* PGLoadMoreFootView.h in CopyFiles */,
+				119BCEE21BCE02A700CE65AD /* PGRefreshView.h in CopyFiles */,
+				11DC50371BFF01CE00EF603E /* PGBaseRefresh.h in CopyFiles */,
+				119BCEE11BCE02A500CE65AD /* PGPageControl.h in CopyFiles */,
+				119BCEE41BCE02AC00CE65AD /* PGTableView.h in CopyFiles */,
+				119BCEE51BCE02AD00CE65AD /* PGTableViewCell.h in CopyFiles */,
+				119BCEE31BCE02AA00CE65AD /* PGTableCellBackView.h in CopyFiles */,
+				1167A01D1BC8EB2700766C67 /* PGNavigationViewController.h in CopyFiles */,
+				116AAEE21BCA267F00D7F350 /* PGScreenAdapter.h in CopyFiles */,
+				1167A0221BC8EB3700766C67 /* PGUIKitUtil.h in CopyFiles */,
+				1167A0201BC8EB2C00766C67 /* PGUIHelper.h in CopyFiles */,
+				1167A0211BC8EB3500766C67 /* PGUIKit.h in CopyFiles */,
+				1167A01F1BC8EB2A00766C67 /* PGUIExtend.h in CopyFiles */,
+				1167A01E1BC8EB2900766C67 /* PGProgressView.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		1167A0001BC8E45500766C67 /* PGBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBaseViewController.h; sourceTree = "<group>"; };
+		1167A0011BC8E45500766C67 /* PGBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBaseViewController.m; sourceTree = "<group>"; };
+		1167A0021BC8E45500766C67 /* PGNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGNavigationViewController.h; sourceTree = "<group>"; };
+		1167A0031BC8E45500766C67 /* PGNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGNavigationViewController.m; sourceTree = "<group>"; };
+		1167A0041BC8E45500766C67 /* PGUIExtend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGUIExtend.h; sourceTree = "<group>"; };
+		1167A0051BC8E45500766C67 /* PGUIExtend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGUIExtend.m; sourceTree = "<group>"; };
+		1167A0061BC8E45500766C67 /* PGUIHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGUIHelper.h; sourceTree = "<group>"; };
+		1167A0071BC8E45500766C67 /* PGUIKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGUIKit.h; sourceTree = "<group>"; };
+		1167A0081BC8E45500766C67 /* PGUIKitUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGUIKitUtil.h; sourceTree = "<group>"; };
+		1167A0091BC8E45500766C67 /* PGUIKitUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGUIKitUtil.m; sourceTree = "<group>"; };
+		1167A00E1BC8E4BF00766C67 /* PGProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGProgressView.h; sourceTree = "<group>"; };
+		1167A00F1BC8E4BF00766C67 /* PGProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGProgressView.m; sourceTree = "<group>"; };
+		116AAEDF1BCA17CC00D7F350 /* PGScreenAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGScreenAdapter.h; sourceTree = "<group>"; };
+		116AAEE01BCA17CC00D7F350 /* PGScreenAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGScreenAdapter.m; sourceTree = "<group>"; };
+		1172274E1C1FA6F100ED9D20 /* PGViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGViewController.h; sourceTree = "<group>"; };
+		1172274F1C1FA6F100ED9D20 /* PGViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGViewController.m; sourceTree = "<group>"; };
+		117227511C1FA77200ED9D20 /* PGNavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGNavBar.h; sourceTree = "<group>"; };
+		117227521C1FA77200ED9D20 /* PGNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGNavBar.m; sourceTree = "<group>"; };
+		119BCEC51BCE029700CE65AD /* PGImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGImageView.h; sourceTree = "<group>"; };
+		119BCEC61BCE029700CE65AD /* PGImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGImageView.m; sourceTree = "<group>"; };
+		119BCEC71BCE029700CE65AD /* PGImageWheel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGImageWheel.h; sourceTree = "<group>"; };
+		119BCEC81BCE029700CE65AD /* PGImageWheel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGImageWheel.m; sourceTree = "<group>"; };
+		119BCEC91BCE029700CE65AD /* PGLoadMoreFootView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGLoadMoreFootView.h; sourceTree = "<group>"; };
+		119BCECA1BCE029700CE65AD /* PGLoadMoreFootView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGLoadMoreFootView.m; sourceTree = "<group>"; };
+		119BCECB1BCE029700CE65AD /* PGPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGPageControl.h; sourceTree = "<group>"; };
+		119BCECC1BCE029700CE65AD /* PGPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGPageControl.m; sourceTree = "<group>"; };
+		119BCECD1BCE029700CE65AD /* PGRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGRefreshView.h; sourceTree = "<group>"; };
+		119BCECE1BCE029700CE65AD /* PGRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGRefreshView.m; sourceTree = "<group>"; };
+		119BCED01BCE029700CE65AD /* PGTableCellBackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGTableCellBackView.h; sourceTree = "<group>"; };
+		119BCED11BCE029700CE65AD /* PGTableCellBackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGTableCellBackView.m; sourceTree = "<group>"; };
+		119BCED21BCE029700CE65AD /* PGTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGTableView.h; sourceTree = "<group>"; };
+		119BCED31BCE029700CE65AD /* PGTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGTableView.m; sourceTree = "<group>"; };
+		119BCED41BCE029700CE65AD /* PGTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGTableViewCell.h; sourceTree = "<group>"; };
+		119BCED51BCE029700CE65AD /* PGTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGTableViewCell.m; sourceTree = "<group>"; };
+		11DC50341BFEF71100EF603E /* PGBaseRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBaseRefresh.h; sourceTree = "<group>"; };
+		11DC50351BFEF71100EF603E /* PGBaseRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBaseRefresh.m; sourceTree = "<group>"; };
+		11DC50381BFF031C00EF603E /* PGRefreshRotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGRefreshRotate.h; sourceTree = "<group>"; };
+		11DC50391BFF031C00EF603E /* PGRefreshRotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGRefreshRotate.m; sourceTree = "<group>"; };
+		11DC503C1BFF057000EF603E /* PGAnimationItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGAnimationItem.h; sourceTree = "<group>"; };
+		11DC503D1BFF057000EF603E /* PGAnimationItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGAnimationItem.m; sourceTree = "<group>"; };
+		11DC503F1BFF059100EF603E /* PGAnimationGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGAnimationGroup.h; sourceTree = "<group>"; };
+		11DC50401BFF059100EF603E /* PGAnimationGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGAnimationGroup.m; sourceTree = "<group>"; };
+		11DC50421BFF05AA00EF603E /* PGAnimationSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGAnimationSequence.h; sourceTree = "<group>"; };
+		11DC50431BFF05AA00EF603E /* PGAnimationSequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGAnimationSequence.m; sourceTree = "<group>"; };
+		11DDE85D1BC89A520046FF2C /* libPGUIKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPGUIKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		11DDE85A1BC89A520046FF2C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		11679FFF1BC8E45500766C67 /* PGController */ = {
+			isa = PBXGroup;
+			children = (
+				1167A0001BC8E45500766C67 /* PGBaseViewController.h */,
+				1167A0011BC8E45500766C67 /* PGBaseViewController.m */,
+				1167A0021BC8E45500766C67 /* PGNavigationViewController.h */,
+				1167A0031BC8E45500766C67 /* PGNavigationViewController.m */,
+				1172274E1C1FA6F100ED9D20 /* PGViewController.h */,
+				1172274F1C1FA6F100ED9D20 /* PGViewController.m */,
+			);
+			path = PGController;
+			sourceTree = "<group>";
+		};
+		119BCECF1BCE029700CE65AD /* PGTable */ = {
+			isa = PBXGroup;
+			children = (
+				119BCED01BCE029700CE65AD /* PGTableCellBackView.h */,
+				119BCED11BCE029700CE65AD /* PGTableCellBackView.m */,
+				119BCED21BCE029700CE65AD /* PGTableView.h */,
+				119BCED31BCE029700CE65AD /* PGTableView.m */,
+				119BCED41BCE029700CE65AD /* PGTableViewCell.h */,
+				119BCED51BCE029700CE65AD /* PGTableViewCell.m */,
+			);
+			path = PGTable;
+			sourceTree = "<group>";
+		};
+		11DC503B1BFF052B00EF603E /* PGAnimationSequence */ = {
+			isa = PBXGroup;
+			children = (
+				11DC503C1BFF057000EF603E /* PGAnimationItem.h */,
+				11DC503D1BFF057000EF603E /* PGAnimationItem.m */,
+				11DC503F1BFF059100EF603E /* PGAnimationGroup.h */,
+				11DC50401BFF059100EF603E /* PGAnimationGroup.m */,
+				11DC50421BFF05AA00EF603E /* PGAnimationSequence.h */,
+				11DC50431BFF05AA00EF603E /* PGAnimationSequence.m */,
+			);
+			path = PGAnimationSequence;
+			sourceTree = "<group>";
+		};
+		11DDE8541BC89A510046FF2C = {
+			isa = PBXGroup;
+			children = (
+				11DDE85F1BC89A520046FF2C /* PGUIKit */,
+				11DDE85E1BC89A520046FF2C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		11DDE85E1BC89A520046FF2C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				11DDE85D1BC89A520046FF2C /* libPGUIKit.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		11DDE85F1BC89A520046FF2C /* PGUIKit */ = {
+			isa = PBXGroup;
+			children = (
+				11DC503B1BFF052B00EF603E /* PGAnimationSequence */,
+				119BCEC51BCE029700CE65AD /* PGImageView.h */,
+				119BCEC61BCE029700CE65AD /* PGImageView.m */,
+				119BCEC71BCE029700CE65AD /* PGImageWheel.h */,
+				119BCEC81BCE029700CE65AD /* PGImageWheel.m */,
+				119BCEC91BCE029700CE65AD /* PGLoadMoreFootView.h */,
+				119BCECA1BCE029700CE65AD /* PGLoadMoreFootView.m */,
+				119BCECB1BCE029700CE65AD /* PGPageControl.h */,
+				119BCECC1BCE029700CE65AD /* PGPageControl.m */,
+				119BCECD1BCE029700CE65AD /* PGRefreshView.h */,
+				119BCECE1BCE029700CE65AD /* PGRefreshView.m */,
+				119BCECF1BCE029700CE65AD /* PGTable */,
+				11679FFF1BC8E45500766C67 /* PGController */,
+				1167A00E1BC8E4BF00766C67 /* PGProgressView.h */,
+				1167A00F1BC8E4BF00766C67 /* PGProgressView.m */,
+				1167A0041BC8E45500766C67 /* PGUIExtend.h */,
+				1167A0051BC8E45500766C67 /* PGUIExtend.m */,
+				1167A0061BC8E45500766C67 /* PGUIHelper.h */,
+				1167A0071BC8E45500766C67 /* PGUIKit.h */,
+				1167A0081BC8E45500766C67 /* PGUIKitUtil.h */,
+				1167A0091BC8E45500766C67 /* PGUIKitUtil.m */,
+				116AAEDF1BCA17CC00D7F350 /* PGScreenAdapter.h */,
+				116AAEE01BCA17CC00D7F350 /* PGScreenAdapter.m */,
+				11DC50341BFEF71100EF603E /* PGBaseRefresh.h */,
+				11DC50351BFEF71100EF603E /* PGBaseRefresh.m */,
+				11DC50381BFF031C00EF603E /* PGRefreshRotate.h */,
+				11DC50391BFF031C00EF603E /* PGRefreshRotate.m */,
+				117227511C1FA77200ED9D20 /* PGNavBar.h */,
+				117227521C1FA77200ED9D20 /* PGNavBar.m */,
+			);
+			path = PGUIKit;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		11DDE85C1BC89A520046FF2C /* PGUIKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 11DDE8661BC89A520046FF2C /* Build configuration list for PBXNativeTarget "PGUIKit" */;
+			buildPhases = (
+				11DDE8591BC89A520046FF2C /* Sources */,
+				11DDE85A1BC89A520046FF2C /* Frameworks */,
+				11DDE85B1BC89A520046FF2C /* CopyFiles */,
+				11679FE01BC8BE5A00766C67 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PGUIKit;
+			productName = PGUIKit;
+			productReference = 11DDE85D1BC89A520046FF2C /* libPGUIKit.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		11DDE8551BC89A520046FF2C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = PG;
+				TargetAttributes = {
+					11DDE85C1BC89A520046FF2C = {
+						CreatedOnToolsVersion = 7.0.1;
+					};
+				};
+			};
+			buildConfigurationList = 11DDE8581BC89A520046FF2C /* Build configuration list for PBXProject "PGUIKit" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 11DDE8541BC89A510046FF2C;
+			productRefGroup = 11DDE85E1BC89A520046FF2C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				11DDE85C1BC89A520046FF2C /* PGUIKit */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		11679FE01BC8BE5A00766C67 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "lipo -create \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/libPGUIKit.a\" \"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/libPGUIKit.a\" -output \"${SRCROOT}/OutPut/${CONFIGURATION}/PGUIKit.a\"";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		11DDE8591BC89A520046FF2C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				119BCEDC1BCE029700CE65AD /* PGTableView.m in Sources */,
+				11DC503A1BFF031C00EF603E /* PGRefreshRotate.m in Sources */,
+				119BCED71BCE029700CE65AD /* PGImageWheel.m in Sources */,
+				116AAEE11BCA17CC00D7F350 /* PGScreenAdapter.m in Sources */,
+				1167A00A1BC8E45500766C67 /* PGBaseViewController.m in Sources */,
+				119BCED91BCE029700CE65AD /* PGPageControl.m in Sources */,
+				119BCED81BCE029700CE65AD /* PGLoadMoreFootView.m in Sources */,
+				11DC503E1BFF057000EF603E /* PGAnimationItem.m in Sources */,
+				119BCEDA1BCE029700CE65AD /* PGRefreshView.m in Sources */,
+				119BCED61BCE029700CE65AD /* PGImageView.m in Sources */,
+				119BCEDB1BCE029700CE65AD /* PGTableCellBackView.m in Sources */,
+				11DC50441BFF05AA00EF603E /* PGAnimationSequence.m in Sources */,
+				1167A00B1BC8E45500766C67 /* PGNavigationViewController.m in Sources */,
+				1167A00C1BC8E45500766C67 /* PGUIExtend.m in Sources */,
+				11DC50411BFF059100EF603E /* PGAnimationGroup.m in Sources */,
+				11DC50361BFEF71100EF603E /* PGBaseRefresh.m in Sources */,
+				1167A0101BC8E4BF00766C67 /* PGProgressView.m in Sources */,
+				119BCEDD1BCE029700CE65AD /* PGTableViewCell.m in Sources */,
+				1167A00D1BC8E45500766C67 /* PGUIKitUtil.m in Sources */,
+				117227501C1FA6F100ED9D20 /* PGViewController.m in Sources */,
+				117227531C1FA77200ED9D20 /* PGNavBar.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		11DDE8641BC89A520046FF2C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		11DDE8651BC89A520046FF2C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		11DDE8671BC89A520046FF2C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		11DDE8681BC89A520046FF2C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		11DDE8581BC89A520046FF2C /* Build configuration list for PBXProject "PGUIKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				11DDE8641BC89A520046FF2C /* Debug */,
+				11DDE8651BC89A520046FF2C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		11DDE8661BC89A520046FF2C /* Build configuration list for PBXNativeTarget "PGUIKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				11DDE8671BC89A520046FF2C /* Debug */,
+				11DDE8681BC89A520046FF2C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 11DDE8551BC89A520046FF2C /* Project object */;
+}
