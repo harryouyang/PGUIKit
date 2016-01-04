@@ -15,49 +15,28 @@ typedef enum PageIndicatorPosition
     EPageIndicatorPosition_Top
 }EPageIndicatorPosition;
 
-typedef NS_ENUM(NSUInteger, PageScrollerType){
-    EPageScrollerType_Loop,
-    EPageScrollerType_Reverse
-};
-
 @class PGImageWheel;
 @protocol PGImageWheelDelegate <NSObject>
+@optional
 - (void)imgeWheel:(PGImageWheel *)wheel didSelect:(NSInteger)index;
 - (void)wheelMove:(PGImageWheel *)wheel current:(NSInteger)index;
 @end
 
 @interface PGImageWheel : UIView<UIScrollViewDelegate>
-{
-    UIScrollView *m_scrollView;
-//    EPageIndicatorPosition indicatorPosition;
-    
-//    BOOL bAutoScroll;
-//    NSTimeInterval timeInterval;
-    
-//    PageScrollerType scrollType;
-    
-//    id<PGImageWheelDelegate> delegate;
-}
-@property(nonatomic, strong)NSMutableArray *arImageView;
-@property(nonatomic, assign)EPageIndicatorPosition indicatorPosition;
+
+@property(nonatomic, weak)id<PGImageWheelDelegate> delegate;
+
 @property(nonatomic, assign)BOOL bAutoScroll;
 @property(nonatomic, assign)NSTimeInterval timeInterval;
-@property(nonatomic, assign)PageScrollerType scrollType;
-@property(nonatomic, weak)id<PGImageWheelDelegate> delegate;
-@property(nonatomic, retain)PGPageControl *pageControl;
-@property(nonatomic, assign)float indicatorPostionHeight;
 
-- (id)initWithFrame:(CGRect)frame imageArray:(NSArray *)array isShowPageIndicator:(BOOL)bflag;
+@property(nonatomic, readonly)NSMutableArray *arImageView;
 
-- (void)setIndicatorPosition:(EPageIndicatorPosition)iPosition;
+@property(nonatomic, assign)BOOL isShowPageIndicator;
+@property(nonatomic, assign)EPageIndicatorPosition indicatorPosition;
+@property(nonatomic, readonly)PGPageControl *pageControl;//
 
-//flag 是否需要放大显示
-- (void)ReSetFrame:(CGRect)rect flag:(BOOL)flag;
+- (id)initWithFrame:(CGRect)frame;
 
-- (void)ReSetImageArray:(NSArray *)array;
-
-- (void)scrollPageIndex:(NSInteger)nPageIndex;
-
-- (NSInteger)currentPageIndex;
+- (void)setViewArray:(NSMutableArray *)viewArray;
 
 @end

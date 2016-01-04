@@ -7,14 +7,22 @@
 //
 
 #import "PGImageWheel.h"
-//#import "PGPageControl.h"
 #import "PGImageView.h"
 
 @interface PGImageWheel ()
-//@property(nonatomic, retain)PGPageControl *pageControl;
+{
+    UIScrollView *_scrollView;
+    UIView *_firstView;
+    UIView *_middleView;
+    UIView *_lastView;
+}
 @property(nonatomic, strong)dispatch_source_t timer;
 @property(nonatomic, assign)NSInteger sType;
 @property(nonatomic, assign)NSInteger currentIndex;
+
+@property(nonatomic, assign)float indicatorPostionHeight;
+@property(nonatomic, assign)float viewWidth;
+@property(nonatomic, assign)float viewHeight;
 @end
 
 @implementation PGImageWheel
@@ -45,111 +53,35 @@
     }
 }
 
-- (void)ReSetFrame:(CGRect)rect flag:(BOOL)flag
-{
-    self.frame = rect;
-    CGRect bounds = self.bounds;
-    m_scrollView.frame = bounds;
-    
-    for(int i = 0; i < _arImageView.count; i++)
-    {
-        PGImageView *view = [_arImageView objectAtIndex:i];
-        view.frame = CGRectMake(bounds.size.width * i, bounds.origin.y, bounds.size.width, bounds.size.height);
-        UIImage *image = view.sImage;
-        if(image != nil)
-        {
-            if(flag)
-            {
-                view.contentMode = UIViewContentModeScaleToFill;
-                
-                if(((bounds.size.width > bounds.size.height)&&(image.size.width < image.size.height))||((bounds.size.width < bounds.size.height)&&(image.size.width > image.size.height)))
-                {
-                    view.image = [UIImage imageWithCGImage:image.CGImage scale:1.0 orientation:UIImageOrientationRight];
-                }
-                else
-                {
-                    view.image = [UIImage imageWithCGImage:image.CGImage scale:1.0 orientation:UIImageOrientationUp];
-                }
-            }
-            else
-            {
-                view.contentMode = UIViewContentModeScaleAspectFill;
-                view.image = [UIImage imageWithCGImage:image.CGImage scale:1.0 orientation:UIImageOrientationUp];
-            }
-        }
-    }
-    [m_scrollView setContentSize:CGSizeMake(bounds.size.width * _arImageView.count , bounds.size.height)];
-    
-    if(_pageControl != nil)
-    {
-        if(self.indicatorPosition == EPageIndicatorPosition_Bottom)
-        {
-            _pageControl.frame = CGRectMake(self.indicatorPostionHeight, self.bounds.size.height-self.indicatorPostionHeight, self.bounds.size.width-2*self.indicatorPostionHeight, self.indicatorPostionHeight);
-        }
-        else if(self.indicatorPosition == EPageIndicatorPosition_Top)
-        {
-            _pageControl.frame = CGRectMake(self.indicatorPostionHeight, 0, self.bounds.size.width-2*self.indicatorPostionHeight, self.indicatorPostionHeight);
-        }
-        
-        self.currentIndex = _pageControl.currentPage;
-        [_pageControl setCurrentPage:self.currentIndex];
-        if(self.delegate != nil && [self.delegate respondsToSelector:@selector(wheelMove:current:)])
-        {
-            [self.delegate wheelMove:self current:self.currentIndex];
-        }
-    }
-}
-
-- (void)ReSetImageArray:(NSArray *)array
-{
-    NSInteger count = 1;
-    if(array != nil && array.count > 0)
-    {
-        for(UIView *view in m_scrollView.subviews)
-            [view removeFromSuperview];
-        
-        [_arImageView removeAllObjects];
-        
-        CGRect bounds = self.bounds;
-        [_arImageView addObjectsFromArray:array];
-        count = array.count;
-        [m_scrollView setContentSize:CGSizeMake(bounds.size.width * count , bounds.size.height)];
-        for(int i = 0; i < count; i++)
-        {
-            UIView *view = [array objectAtIndex:i];
-            view.frame = CGRectMake(bounds.size.width * i, bounds.origin.y, bounds.size.width, bounds.size.height);
-            view.userInteractionEnabled = YES;
-            if([view isKindOfClass:[UIImageView class]])
-            {
-                view.contentMode = UIViewContentModeScaleToFill;
-            }
-            
-            UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(subViewClick:)];
-            [view addGestureRecognizer:singleTap];
-            
-            [m_scrollView addSubview:view];
-        }
-        
-        if(_pageControl != nil)
-        {
-            self.pageControl.numberOfPages = count;
-        }
-    }
-    
-}
-
-- (id)initWithFrame:(CGRect)frame imageArray:(NSArray *)array isShowPageIndicator:(BOOL)bflag
+- (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self)
     {
         CGRect bounds = CGRectMake(0, 0, frame.size.width, frame.size.height);
-        m_scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(bounds.origin.x, bounds.origin.y, bounds.size.width, bounds.size.height)];
-        m_scrollView.pagingEnabled = YES;
-        m_scrollView.bounces = NO;
-        [m_scrollView setDelegate:self];
-        m_scrollView.showsHorizontalScrollIndicator = NO;
-        [self addSubview:m_scrollView];
+        _viewWidth = bounds.size.width;
+        _viewHeight = bounds.size.height;
+        
+        _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(bounds.origin.x, bounds.origin.y, bounds.size.width, bounds.size.height)];
+        _scrollView.pagingEnabled = YES;
+        _scrollView.bounces = NO;
+        [_scrollView setDelegate:self];
+        _scrollView.showsHorizontalScrollIndicator = NO;
+        _scrollView.contentSize = CGSizeMake(_viewWidth * 3, _viewHeight);
+        [self addSubview:_scrollView];
+        
+        //设置单击手势
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(handleTap:)];
+        tap.numberOfTapsRequired = 1;
+        tap.numberOfTouchesRequired = 1;
+        [_scrollView addGestureRecognizer:tap];
+        
+        _firstView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _viewWidth, _viewHeight)];
+        [_scrollView addSubview:_firstView];
+        _middleView = [[UIView alloc] initWithFrame:CGRectMake(_viewWidth, 0, _viewWidth, _viewHeight)];
+        [_scrollView addSubview:_middleView];
+        _lastView = [[UIView alloc] initWithFrame:CGRectMake(_viewWidth*2, 0, _viewWidth, _viewHeight)];
+        [_scrollView addSubview:_lastView];
         
         self.bAutoScroll = NO;
         self.timeInterval = 3;
@@ -158,29 +90,10 @@
         self.indicatorPostionHeight = 20;
         
         self.indicatorPosition = EPageIndicatorPosition_Bottom;
-        _arImageView = [[NSMutableArray alloc] init];
-        NSInteger count = 1;
-        if(array != nil && array.count > 0)
-        {
-            [_arImageView addObjectsFromArray:array];
-            count = array.count;
-            [m_scrollView setContentSize:CGSizeMake(bounds.size.width * count , bounds.size.height)];
-            for(int i = 0; i < count; i++)
-            {
-                UIView *view = [array objectAtIndex:i];
-                view.frame = CGRectMake(bounds.size.width * i, bounds.origin.y, bounds.size.width, bounds.size.height);
-                view.userInteractionEnabled = YES;
-                
-                UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(subViewClick:)];
-                [view addGestureRecognizer:singleTap];
-                
-                [m_scrollView addSubview:view];
-            }
-        }
         
         _pageControl = [[PGPageControl alloc] initWithFrame:CGRectMake(0, bounds.size.height-self.indicatorPostionHeight, bounds.size.width, self.indicatorPostionHeight)];
         self.pageControl.pageControlStyle = PGPageControlStyleDfault;
-        self.pageControl.numberOfPages = count;
+        self.pageControl.numberOfPages = 1;
         self.pageControl.currentPage = self.currentIndex;
         self.pageControl.backgroundColor = [UIColor colorWithRed:(float)(72)/255.0 green:(float)(72)/255.0 blue:(float)(72)/255.0 alpha:(0.0)];
         // change color
@@ -190,80 +103,194 @@
         [self.pageControl setGapWidth:5];
         // change diameter
         [self.pageControl setDiameter:9];
-        [self.pageControl addTarget:self action:@selector(pageChanged:) forControlEvents:UIControlEventValueChanged];
         [self addSubview:self.pageControl];
-        
-        if(bflag)
-        {
-            self.pageControl.hidden = NO;
-        }
-        else
-        {
-            self.pageControl.hidden = YES;
-        }
     }
+    
     return self;
 }
 
-- (void)pageChanged:(PGPageControl *)pageContrl
+-(void)handleTap:(UITapGestureRecognizer*)sender
 {
-    CGSize viewSize = m_scrollView.frame.size;
+    if(self.delegate != nil && [self.delegate respondsToSelector:@selector(imgeWheel:didSelect:)])
+    {
+        [self.delegate imgeWheel:self didSelect:_currentIndex];
+    }
+}
+
+- (void)setViewArray:(NSMutableArray *)viewArray
+{
+    NSAssert((viewArray != nil), @"viewArray is nil");
     
-    CGRect rect = CGRectMake(pageContrl.currentPage * viewSize.width, 0, viewSize.width, viewSize.height);
+    if(viewArray)
+    {
+        for(UIView *view in viewArray)
+        {
+            view.frame = CGRectMake(0, 0, _viewWidth, _viewHeight);
+        }
+        _arImageView = viewArray;
+        _currentIndex = 0; //默认为第0页
+        
+        _pageControl.numberOfPages = _arImageView.count;
+        
+        if(self.arImageView.count == 2)
+        {
+            UIView *v = [self.arImageView objectAtIndex:0];
+            if([v isKindOfClass:[PGImageView class]])
+            {
+                PGImageView *view = [[PGImageView alloc] initWithFrame:v.frame];
+                view.image = [((PGImageView *)v).image copy];
+                [self.arImageView addObject:view];
+                
+                v = [self.arImageView objectAtIndex:1];
+                view = [[PGImageView alloc] initWithFrame:v.frame];
+                view.image = [((PGImageView *)v).image copy];
+                [self.arImageView addObject:view];
+            }
+            else if([v isKindOfClass:[UIImageView class]])
+            {
+                UIImageView *view = [[UIImageView alloc] initWithFrame:v.frame];
+                view.image = [((UIImageView *)v).image copy];
+                [self.arImageView addObject:view];
+                
+                v = [self.arImageView objectAtIndex:1];
+                view = [[UIImageView alloc] initWithFrame:v.frame];
+                view.image = [((UIImageView *)v).image copy];
+                [self.arImageView addObject:view];
+            }
+            else if([v isKindOfClass:[UIView class]])
+            {
+                UIView *view = [v copy];
+                [self.arImageView addObject:view];
+                
+                v = [self.arImageView objectAtIndex:1];
+                view = [v copy];
+                [self.arImageView addObject:view];
+            }
+        }
+    }
     
-    [m_scrollView scrollRectToVisible:rect animated:YES];
+    [self reloadData];
+}
+
+- (void)reloadData
+{
+    for(UIView *v in _firstView.subviews)
+    {
+        [v removeFromSuperview];
+    }
+    
+    for(UIView *v in _middleView.subviews)
+    {
+        [v removeFromSuperview];
+    }
+    
+    for(UIView *v in _lastView.subviews)
+    {
+        [v removeFromSuperview];
+    }
+    
+    if(self.arImageView.count == 1)
+    {
+        _scrollView.scrollEnabled = NO;
+        [self setIsShowPageIndicator:NO];
+    }
+    else
+    {
+        _scrollView.scrollEnabled = YES;
+        [self setIsShowPageIndicator:YES];
+    }
+    
+    if(_currentIndex == 0)
+    {
+        if(self.arImageView.count == 1)
+        {
+            [_middleView addSubview:[_arImageView objectAtIndex:_currentIndex]];
+        }
+        else
+        {
+            [_firstView addSubview:[_arImageView lastObject]];
+            [_middleView addSubview:[_arImageView objectAtIndex:_currentIndex]];
+            [_lastView addSubview:[_arImageView objectAtIndex:_currentIndex+1]];
+        }
+    }
+    else if(_currentIndex == _arImageView.count-1)
+    {
+        [_firstView addSubview:[_arImageView objectAtIndex:_currentIndex-1]];
+        [_middleView addSubview:[_arImageView objectAtIndex:_currentIndex]];
+        [_lastView addSubview:[_arImageView firstObject]];
+    }
+    else
+    {
+        [_firstView addSubview:[_arImageView objectAtIndex:_currentIndex-1]];
+        [_middleView addSubview:[_arImageView objectAtIndex:_currentIndex]];
+        [_lastView addSubview:[_arImageView objectAtIndex:_currentIndex+1]];
+    }
+    
+    [_pageControl setCurrentPage:self.currentIndex];
+    _scrollView.contentOffset = CGPointMake(_viewWidth, 0);
+}
+
+- (void)setIsShowPageIndicator:(BOOL)isShowPageIndicator
+{
+    _isShowPageIndicator = isShowPageIndicator;
+    
+    if(_isShowPageIndicator)
+    {
+        self.pageControl.hidden = NO;
+    }
+    else
+    {
+        self.pageControl.hidden = YES;
+    }
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
+    if(_timer)
+    {
+        dispatch_suspend(_timer);
+    }
+    
     CGPoint offset = scrollView.contentOffset;
-    CGRect bounds = scrollView.frame;
-    [_pageControl setCurrentPage:offset.x / bounds.size.width];
-    self.currentIndex = self.pageControl.currentPage;
+    
+    float x = offset.x;
+    if(x <= 0)
+    {
+        if(self.currentIndex - 1 < 0)
+        {
+            self.currentIndex = _arImageView.count - 1;
+        }
+        else
+        {
+            self.currentIndex -= 1;
+        }
+    }
+    
+    if(x >= _viewWidth * 2)
+    {
+        if(self.currentIndex == _arImageView.count - 1)
+        {
+            self.currentIndex = 0;
+        }
+        else
+        {
+            self.currentIndex += 1;
+        }
+    }
+    
+    self.currentIndex %= self.pageControl.numberOfPages;
+    
+    [self reloadData];
+    
     if(self.delegate != nil && [self.delegate respondsToSelector:@selector(wheelMove:current:)])
     {
-        [self.delegate wheelMove:self current:self.pageControl.currentPage];
+        [self.delegate wheelMove:self current:self.currentIndex];
     }
-}
-
-- (void)scrollPageIndex:(NSInteger)nPageIndex
-{
-    if(_arImageView != nil && _arImageView.count > 0)
+    
+    if(_timer)
     {
-        if(self.scrollType == EPageScrollerType_Loop)
-        {
-            self.pageControl.currentPage = nPageIndex%_arImageView.count;
-        }
-        else if(self.scrollType == EPageScrollerType_Reverse)
-        {
-            self.pageControl.currentPage = nPageIndex%_arImageView.count;
-            
-            if(nPageIndex == _arImageView.count-1)
-            {
-                _sType = -1;
-            }
-            
-            if(nPageIndex == 0)
-            {
-                _sType = 1;
-            }
-        }
-        
-        self.currentIndex = self.pageControl.currentPage;
-        
-        if(self.delegate != nil && [self.delegate respondsToSelector:@selector(wheelMove:current:)])
-        {
-            [self.delegate wheelMove:self current:self.pageControl.currentPage];
-        }
+        dispatch_resume(_timer);
     }
-}
-
-- (NSInteger)currentPageIndex
-{
-    NSInteger index = 0;
-    if(self.pageControl != nil)
-        index = self.pageControl.currentPage;
-    return index;
 }
 
 - (void)setBAutoScroll:(BOOL)autoScroll
@@ -277,7 +304,7 @@
             _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
             dispatch_source_set_timer(_timer, dispatch_walltime(NULL, self.timeInterval), self.timeInterval*NSEC_PER_SEC, 1*NSEC_PER_SEC);
             dispatch_source_set_event_handler(_timer, ^{
-                [self scrollPageIndex:[self currentPageIndex]+_sType];
+                [self autoShowNextImage];
             });
             
             double delayInSeconds = 4.0;
@@ -300,11 +327,37 @@
     }
 }
 
-- (void)subViewClick:(UITapGestureRecognizer *)gesture
+- (void)autoShowNextImage
 {
-    if(self.delegate != nil && [self.delegate respondsToSelector:@selector(imgeWheel:didSelect:)])
+    if(_arImageView.count < 2)
+        return;
+    
+    NSInteger index = _currentIndex+_sType;
+    
+    if(_sType > 0)
     {
-        [self.delegate imgeWheel:self didSelect:self.pageControl.currentPage];
+        if(index == _arImageView.count)
+        {
+            index = 0;
+        }
+    }
+    else
+    {
+        if(index < 0)
+        {
+            index = _arImageView.count - 1;
+        }
+    }
+    
+    self.currentIndex = index;
+    
+    self.currentIndex %= self.pageControl.numberOfPages;
+    
+    [self reloadData];
+    
+    if(self.delegate != nil && [self.delegate respondsToSelector:@selector(wheelMove:current:)])
+    {
+        [self.delegate wheelMove:self current:self.currentIndex];
     }
 }
 
