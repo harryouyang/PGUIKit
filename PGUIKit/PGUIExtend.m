@@ -149,8 +149,8 @@ UILabel* (^createAndAddLabel)(UIView *pView, CGRect frame, UIColor *bgcolor, UIC
         CGRect sRC = self.frame;
         CGRect rect = CGRectMake(sRC.origin.x-edgeInset.left, sRC.origin.y-edgeInset.top, sRC.size.width+edgeInset.left+edgeInset.right, sRC.size.height+edgeInset.top+edgeInset.bottom);
         UIView *eventView = [[UIView alloc] initWithFrame:rect];
-        eventView.backgroundColor = [UIColor whiteColor];
-        eventView.alpha = 0.02;
+        eventView.backgroundColor = [UIColor clearColor];
+//        eventView.alpha = 0.02;
         [self.superview insertSubview:eventView belowSubview:self];
         
         UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(eventViewTap:)];
@@ -167,7 +167,7 @@ UILabel* (^createAndAddLabel)(UIView *pView, CGRect frame, UIColor *bgcolor, UIC
     {
         id target = [set.allObjects objectAtIndex:0];
         NSArray *array = [self actionsForTarget:target forControlEvent:UIControlEventTouchUpInside];
-        if(array != nil && array.count > 0)
+        if(array != nil && array.count > 0 && !self.hidden)
         {
             [target performSelectorOnMainThread:NSSelectorFromString([array objectAtIndex:0]) withObject:self waitUntilDone:NO];
         }

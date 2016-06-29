@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		113E41C51C4F817F00AD0666 /* PGCheckView.m in Sources */ = {isa = PBXBuildFile; fileRef = 113E41C41C4F817F00AD0666 /* PGCheckView.m */; };
+		113E41CA1C4F908300AD0666 /* PGCheckView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 113E41C31C4F817F00AD0666 /* PGCheckView.h */; };
+		113E41CD1C4F964D00AD0666 /* PGRadioGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 113E41CC1C4F964D00AD0666 /* PGRadioGroup.m */; };
+		113E41CE1C4F9DFC00AD0666 /* PGRadioGroup.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 113E41CB1C4F964D00AD0666 /* PGRadioGroup.h */; };
+		115EF14F1C55ECEB006385AF /* PGBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 115EF14E1C55ECEB006385AF /* PGBubbleView.m */; };
+		115EF1521C55F6D1006385AF /* PGPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 115EF1511C55F6D1006385AF /* PGPopView.m */; };
+		115EF1531C55FB11006385AF /* PGPopView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 115EF1501C55F6D1006385AF /* PGPopView.h */; };
+		115EF1541C55FB13006385AF /* PGBubbleView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 115EF14D1C55ECEB006385AF /* PGBubbleView.h */; };
 		1167A00A1BC8E45500766C67 /* PGBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1167A0011BC8E45500766C67 /* PGBaseViewController.m */; };
 		1167A00B1BC8E45500766C67 /* PGNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1167A0031BC8E45500766C67 /* PGNavigationViewController.m */; };
 		1167A00C1BC8E45500766C67 /* PGUIExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = 1167A0051BC8E45500766C67 /* PGUIExtend.m */; };
@@ -25,6 +33,14 @@
 		117227531C1FA77200ED9D20 /* PGNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 117227521C1FA77200ED9D20 /* PGNavBar.m */; };
 		117227541C1FBC8000ED9D20 /* PGViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1172274E1C1FA6F100ED9D20 /* PGViewController.h */; };
 		117227551C1FBC8600ED9D20 /* PGNavBar.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 117227511C1FA77200ED9D20 /* PGNavBar.h */; };
+		117A7D961D23600E003843A9 /* PGAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 117A7D8F1D23600E003843A9 /* PGAlertView.m */; };
+		117A7D971D23600E003843A9 /* PGColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 117A7D911D23600E003843A9 /* PGColor.m */; };
+		117A7D981D23600E003843A9 /* PGImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 117A7D931D23600E003843A9 /* PGImage.m */; };
+		117A7D991D23600E003843A9 /* PGStarRatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 117A7D951D23600E003843A9 /* PGStarRatingView.m */; };
+		117A7D9A1D23601C003843A9 /* PGAlertView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 117A7D8E1D23600E003843A9 /* PGAlertView.h */; };
+		117A7D9B1D23601E003843A9 /* PGColor.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 117A7D901D23600E003843A9 /* PGColor.h */; };
+		117A7D9C1D236020003843A9 /* PGImage.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 117A7D921D23600E003843A9 /* PGImage.h */; };
+		117A7D9D1D236021003843A9 /* PGStarRatingView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 117A7D941D23600E003843A9 /* PGStarRatingView.h */; };
 		119BCED61BCE029700CE65AD /* PGImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 119BCEC61BCE029700CE65AD /* PGImageView.m */; };
 		119BCED71BCE029700CE65AD /* PGImageWheel.m in Sources */ = {isa = PBXBuildFile; fileRef = 119BCEC81BCE029700CE65AD /* PGImageWheel.m */; };
 		119BCED81BCE029700CE65AD /* PGLoadMoreFootView.m in Sources */ = {isa = PBXBuildFile; fileRef = 119BCECA1BCE029700CE65AD /* PGLoadMoreFootView.m */; };
@@ -60,9 +76,17 @@
 			dstPath = "${SRCROOT}/OutPut/include";
 			dstSubfolderSpec = 0;
 			files = (
+				113E41CE1C4F9DFC00AD0666 /* PGRadioGroup.h in CopyFiles */,
 				1167A01C1BC8EB2400766C67 /* PGBaseViewController.h in CopyFiles */,
 				119BCEDE1BCE02A000CE65AD /* PGImageView.h in CopyFiles */,
 				117227541C1FBC8000ED9D20 /* PGViewController.h in CopyFiles */,
+				117A7D9D1D236021003843A9 /* PGStarRatingView.h in CopyFiles */,
+				117A7D9C1D236020003843A9 /* PGImage.h in CopyFiles */,
+				117A7D9A1D23601C003843A9 /* PGAlertView.h in CopyFiles */,
+				115EF1541C55FB13006385AF /* PGBubbleView.h in CopyFiles */,
+				117A7D9B1D23601E003843A9 /* PGColor.h in CopyFiles */,
+				113E41CA1C4F908300AD0666 /* PGCheckView.h in CopyFiles */,
+				115EF1531C55FB11006385AF /* PGPopView.h in CopyFiles */,
 				117227551C1FBC8600ED9D20 /* PGNavBar.h in CopyFiles */,
 				11DC50451BFF09A500EF603E /* PGAnimationItem.h in CopyFiles */,
 				11DC50461BFF09A600EF603E /* PGAnimationGroup.h in CopyFiles */,
@@ -89,6 +113,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		113E41C31C4F817F00AD0666 /* PGCheckView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGCheckView.h; sourceTree = "<group>"; };
+		113E41C41C4F817F00AD0666 /* PGCheckView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGCheckView.m; sourceTree = "<group>"; };
+		113E41CB1C4F964D00AD0666 /* PGRadioGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGRadioGroup.h; sourceTree = "<group>"; };
+		113E41CC1C4F964D00AD0666 /* PGRadioGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGRadioGroup.m; sourceTree = "<group>"; };
+		115EF14D1C55ECEB006385AF /* PGBubbleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBubbleView.h; sourceTree = "<group>"; };
+		115EF14E1C55ECEB006385AF /* PGBubbleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBubbleView.m; sourceTree = "<group>"; };
+		115EF1501C55F6D1006385AF /* PGPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGPopView.h; sourceTree = "<group>"; };
+		115EF1511C55F6D1006385AF /* PGPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGPopView.m; sourceTree = "<group>"; };
 		1167A0001BC8E45500766C67 /* PGBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBaseViewController.h; sourceTree = "<group>"; };
 		1167A0011BC8E45500766C67 /* PGBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBaseViewController.m; sourceTree = "<group>"; };
 		1167A0021BC8E45500766C67 /* PGNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGNavigationViewController.h; sourceTree = "<group>"; };
@@ -107,6 +139,14 @@
 		1172274F1C1FA6F100ED9D20 /* PGViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGViewController.m; sourceTree = "<group>"; };
 		117227511C1FA77200ED9D20 /* PGNavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGNavBar.h; sourceTree = "<group>"; };
 		117227521C1FA77200ED9D20 /* PGNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGNavBar.m; sourceTree = "<group>"; };
+		117A7D8E1D23600E003843A9 /* PGAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGAlertView.h; sourceTree = "<group>"; };
+		117A7D8F1D23600E003843A9 /* PGAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGAlertView.m; sourceTree = "<group>"; };
+		117A7D901D23600E003843A9 /* PGColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGColor.h; sourceTree = "<group>"; };
+		117A7D911D23600E003843A9 /* PGColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGColor.m; sourceTree = "<group>"; };
+		117A7D921D23600E003843A9 /* PGImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGImage.h; sourceTree = "<group>"; };
+		117A7D931D23600E003843A9 /* PGImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGImage.m; sourceTree = "<group>"; };
+		117A7D941D23600E003843A9 /* PGStarRatingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGStarRatingView.h; sourceTree = "<group>"; };
+		117A7D951D23600E003843A9 /* PGStarRatingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGStarRatingView.m; sourceTree = "<group>"; };
 		119BCEC51BCE029700CE65AD /* PGImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGImageView.h; sourceTree = "<group>"; };
 		119BCEC61BCE029700CE65AD /* PGImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGImageView.m; sourceTree = "<group>"; };
 		119BCEC71BCE029700CE65AD /* PGImageWheel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGImageWheel.h; sourceTree = "<group>"; };
@@ -205,6 +245,14 @@
 		11DDE85F1BC89A520046FF2C /* PGUIKit */ = {
 			isa = PBXGroup;
 			children = (
+				117A7D8E1D23600E003843A9 /* PGAlertView.h */,
+				117A7D8F1D23600E003843A9 /* PGAlertView.m */,
+				117A7D901D23600E003843A9 /* PGColor.h */,
+				117A7D911D23600E003843A9 /* PGColor.m */,
+				117A7D921D23600E003843A9 /* PGImage.h */,
+				117A7D931D23600E003843A9 /* PGImage.m */,
+				117A7D941D23600E003843A9 /* PGStarRatingView.h */,
+				117A7D951D23600E003843A9 /* PGStarRatingView.m */,
 				11DC503B1BFF052B00EF603E /* PGAnimationSequence */,
 				119BCEC51BCE029700CE65AD /* PGImageView.h */,
 				119BCEC61BCE029700CE65AD /* PGImageView.m */,
@@ -234,6 +282,14 @@
 				11DC50391BFF031C00EF603E /* PGRefreshRotate.m */,
 				117227511C1FA77200ED9D20 /* PGNavBar.h */,
 				117227521C1FA77200ED9D20 /* PGNavBar.m */,
+				113E41C31C4F817F00AD0666 /* PGCheckView.h */,
+				113E41C41C4F817F00AD0666 /* PGCheckView.m */,
+				113E41CB1C4F964D00AD0666 /* PGRadioGroup.h */,
+				113E41CC1C4F964D00AD0666 /* PGRadioGroup.m */,
+				115EF14D1C55ECEB006385AF /* PGBubbleView.h */,
+				115EF14E1C55ECEB006385AF /* PGBubbleView.m */,
+				115EF1501C55F6D1006385AF /* PGPopView.h */,
+				115EF1511C55F6D1006385AF /* PGPopView.m */,
 			);
 			path = PGUIKit;
 			sourceTree = "<group>";
@@ -302,7 +358,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "lipo -create \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/libPGUIKit.a\" \"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/libPGUIKit.a\" -output \"${SRCROOT}/OutPut/${CONFIGURATION}/PGUIKit.a\"";
+			shellScript = "#lipo -create \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/libPGUIKit.a\" \"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/libPGUIKit.a\" -output \"${SRCROOT}/OutPut/${CONFIGURATION}/PGUIKit.a\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -312,21 +368,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				119BCEDC1BCE029700CE65AD /* PGTableView.m in Sources */,
+				113E41CD1C4F964D00AD0666 /* PGRadioGroup.m in Sources */,
 				11DC503A1BFF031C00EF603E /* PGRefreshRotate.m in Sources */,
 				119BCED71BCE029700CE65AD /* PGImageWheel.m in Sources */,
 				116AAEE11BCA17CC00D7F350 /* PGScreenAdapter.m in Sources */,
 				1167A00A1BC8E45500766C67 /* PGBaseViewController.m in Sources */,
 				119BCED91BCE029700CE65AD /* PGPageControl.m in Sources */,
+				115EF14F1C55ECEB006385AF /* PGBubbleView.m in Sources */,
 				119BCED81BCE029700CE65AD /* PGLoadMoreFootView.m in Sources */,
 				11DC503E1BFF057000EF603E /* PGAnimationItem.m in Sources */,
+				117A7D971D23600E003843A9 /* PGColor.m in Sources */,
 				119BCEDA1BCE029700CE65AD /* PGRefreshView.m in Sources */,
 				119BCED61BCE029700CE65AD /* PGImageView.m in Sources */,
+				113E41C51C4F817F00AD0666 /* PGCheckView.m in Sources */,
 				119BCEDB1BCE029700CE65AD /* PGTableCellBackView.m in Sources */,
 				11DC50441BFF05AA00EF603E /* PGAnimationSequence.m in Sources */,
 				1167A00B1BC8E45500766C67 /* PGNavigationViewController.m in Sources */,
+				117A7D991D23600E003843A9 /* PGStarRatingView.m in Sources */,
+				117A7D961D23600E003843A9 /* PGAlertView.m in Sources */,
 				1167A00C1BC8E45500766C67 /* PGUIExtend.m in Sources */,
 				11DC50411BFF059100EF603E /* PGAnimationGroup.m in Sources */,
 				11DC50361BFEF71100EF603E /* PGBaseRefresh.m in Sources */,
+				115EF1521C55F6D1006385AF /* PGPopView.m in Sources */,
+				117A7D981D23600E003843A9 /* PGImage.m in Sources */,
 				1167A0101BC8E4BF00766C67 /* PGProgressView.m in Sources */,
 				119BCEDD1BCE029700CE65AD /* PGTableViewCell.m in Sources */,
 				1167A00D1BC8E45500766C67 /* PGUIKitUtil.m in Sources */,

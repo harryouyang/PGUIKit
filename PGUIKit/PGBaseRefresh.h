@@ -30,6 +30,7 @@ typedef enum
 @property(nonatomic, assign)float nLoadingInsetStop;
 @property(nonatomic, assign)float nPullingDistance;
 @property(nonatomic, strong)UIScrollView *scrollView;
+@property(nonatomic, strong)UIImageView *imageView;
 
 - (void)setState:(EPGRefreshState)state;
 

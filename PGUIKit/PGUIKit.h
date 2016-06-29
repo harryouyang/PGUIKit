@@ -48,4 +48,7 @@
 //#import "PGImageView.h"
 //#import "PGFoldList.h"
 
+#import "PGCheckView.h"
+#import "PGRadioGroup.h"
+
 #endif

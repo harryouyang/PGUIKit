@@ -11,6 +11,10 @@
 
 #define PGDesignToScreenH(v)    PGDesignHeightToScreenHeight(v)
 
+#define PGHeightWith640(height) PGHeightC(640.0, height)
+#define PGHeightWith750(height) PGHeightC(750.0, height)
+#define PGHeightWith1080(height) PGHeightC(1080.0, height)
+
 @interface PGScreenAdapter : NSObject
 @property(nonatomic, assign, readonly)CGFloat nBaseWidth;
 @property(nonatomic, assign, readonly)CGFloat nBaseHeight;
@@ -21,6 +25,24 @@
 + (PGScreenAdapter *)shareInstance;
 
 @end
+
+CG_INLINE CGFloat PGHeightC(CGFloat reference, CGFloat height)
+{
+    CGFloat adapterHeight = height;
+    
+    if([[UIScreen mainScreen] currentMode].size.width == 768.0f ||
+       [[UIScreen mainScreen] currentMode].size.width == 1536.0f ||
+       [[UIScreen mainScreen] currentMode].size.width == 2048.0f)
+    {
+        adapterHeight = (height * 640.0 ) / reference;
+    }
+    else
+    {
+        adapterHeight = (height * [[UIScreen mainScreen] currentMode].size.width) / reference;
+    }
+    
+    return ceil(adapterHeight/[UIScreen mainScreen].scale);
+}
 
 CG_INLINE CGFloat PGHeightA(CGFloat height)
 {
@@ -35,10 +57,6 @@ CG_INLINE CGFloat PGHeightA(CGFloat height)
 CG_INLINE CGFloat PGHeight(CGFloat height)
 {
     CGFloat adapterHeight = height;
-//    if([[UIScreen mainScreen] currentMode].size.width == 750.0f)
-//        adapterHeight = height * 1.17;
-//    if([[UIScreen mainScreen] currentMode].size.width == 1242.0f)
-//         adapterHeight = height * 1.29;
     return ceil(adapterHeight);
 }
 

@@ -51,13 +51,14 @@
 
 - (void)PGRefreshScrollViewDidScroll:(UIScrollView *)scrollView
 {
-    if (_state == EPGRefreshLoading) {
-        
+    if (_state == EPGRefreshLoading)
+    {
         CGFloat offset = MAX(scrollView.contentOffset.y * -1, 0);
         offset = MIN(offset, _nLoadingInsetStop);
         scrollView.contentInset = UIEdgeInsetsMake(offset, 0.0f, 0.0f, 0.0f);
-    } else if (scrollView.isDragging) {
-        
+    }
+    else if (scrollView.isDragging)
+    {
         BOOL _loading = NO;
         if ([_delegate respondsToSelector:@selector(isLoadingRefreshTableHeaderDataSource:)]) {
             _loading = [_delegate isLoadingRefreshTableHeaderDataSource:self];

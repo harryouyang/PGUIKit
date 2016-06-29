@@ -18,7 +18,13 @@
         self.separatorColor = TABLESEPERATORCOLOR;
         self.rowHeight = PGTABLEVIEWCELLHEIGHT;
         [self setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-        _dicCellHead = [[NSMutableDictionary alloc] init];
+        
+        self.nNumOfPage = 20;
+        self.nTotal = 0;
+        self.nPageIndex = 0;
+        self.bLoading = NO;
+        self.bLoadmoring = NO;
+        self.nEndoffset = 0.0f;
     }
     return self;
 }
@@ -45,24 +51,6 @@
 //    [self addSubview:_refreshTableHeaderView];
 //}
 
-- (UIImageView *)createDefaultSectionHead:(NSString *)szTitle image:(UIImage *)image
-{
-    UIImageView *imageview=[[UIImageView alloc]initWithFrame:CGRectZero];
-    if(image != nil)
-    {
-        UIImage *stretchimage=[image stretchableImageWithLeftCapWidth:1 topCapHeight:1];
-        imageview.image = stretchimage;
-    }
-    
-    UILabel* label=[[UILabel alloc] initWithFrame:CGRectMake(10,0,200,PGTABLEVIEWSECTIONHEADHEIGHT)];
-    label.backgroundColor=[UIColor clearColor];
-    label.text=szTitle;
-    label.font=[UIFont systemFontOfSize:13];
-    [imageview addSubview:label];
-    
-    return imageview;
-}
-
 - (void)refreshScrollViewDidScroll:(UIScrollView *)scrollView
 {
     if(_refreshTableHeaderView != nil)
@@ -78,9 +66,7 @@
 - (void)hideRefreshView:(UIScrollView *)scrollView
 {
     if(_refreshTableHeaderView != nil)
-//        [_refreshTableHeaderView PGRefreshScrollViewDidEndDragging:scrollView];
         [_refreshTableHeaderView PGRefreshScrollViewDataSourceDidFinishedLoading:scrollView];
-    
 }
 
 - (void)autoRefreshView:(UIScrollView *)scrollView
@@ -89,21 +75,6 @@
     {
         [_refreshTableHeaderView PGRefreshScrollViewAutoScroll:scrollView];
         [_refreshTableHeaderView PGRefreshScrollViewDidEndDragging:scrollView closeatOnce:_bRemainLoading];
-    }
-}
-
-- (void)selectRowAtIndexPath:(NSIndexPath *)indexPath select:(BOOL)bSelect
-{
-    if(bSelect)
-    {
-        [self selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
-    }
-    else
-    {
-        if(indexPath != nil)
-            [self deselectRowAtIndexPath:indexPath animated:YES];
-//        else
-//            indexPath = [self indexPathForSelectedRow];
     }
 }
 
@@ -121,12 +92,6 @@
     }
 }
 
-- (void)reloadData
-{
-    [_dicCellHead removeAllObjects];
-    [super reloadData];
-}
-
 - (void)dealloc
 {
     self.pgDelegate = nil;
@@ -135,17 +100,17 @@
 #pragma mark -
 - (void)refreshTableHeaderDidTriggerRefresh:(PGRefreshView *)view
 {
-    if([_pgDelegate respondsToSelector:@selector(refreshTableContent:)])
-        [_pgDelegate refreshTableContent:self];
+    if(!self.bLoading)
+    {
+        self.bLoading = YES;
+        if([_pgDelegate respondsToSelector:@selector(refreshTableContent:)])
+            [_pgDelegate refreshTableContent:self];
+    }
 }
 
 - (BOOL)isLoadingRefreshTableHeaderDataSource:(PGRefreshView *)view
 {
-    BOOL result = NO;
-    if([_pgDelegate respondsToSelector:@selector(isLoadingRefreshTable)])
-        result = [_pgDelegate isLoadingRefreshTable];
-    
-    return result;
+    return self.bLoading;
 }
 
 - (NSDate *)refreshTableHeaderDataSourceLastUpdated:(PGRefreshView *)view
@@ -154,6 +119,40 @@
     if([_pgDelegate respondsToSelector:@selector(refreshLastUpdated:)])
         date = [_pgDelegate refreshLastUpdated:self];
     return date;
+}
+
+#pragma mark -
+- (BOOL)LoadMoreRefreshScrollViewIsLoading:(UIScrollView *)scrollview
+{
+    return self.bLoadmoring;
+}
+
+- (void)LoadMoreRefreshScrollViewDidEndDragging:(UIScrollView *)scrollview
+{
+    if(self.bLoadmoring)
+        return;
+    self.bLoadmoring = YES;
+    
+    [self.moreView LoadMoreRefreshScrollViewDidLoading];
+    
+    if([_pgDelegate respondsToSelector:@selector(loadMore:)])
+    {
+        [_pgDelegate loadMore:self];
+    }
+}
+
+- (void)LoadMoreClick:(PGLoadMoreFootView *)sender
+{
+    if(self.bLoadmoring)
+        return;
+    self.bLoadmoring = YES;
+    
+    [self.moreView LoadMoreRefreshScrollViewDidLoading];
+    
+    if([_pgDelegate respondsToSelector:@selector(loadMore:)])
+    {
+        [_pgDelegate loadMore:self];
+    }
 }
 
 @end

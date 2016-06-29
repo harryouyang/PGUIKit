@@ -16,7 +16,6 @@
 {
     PGAnimationSequence *_sequence;
 }
-@property(nonatomic, strong)UIImageView *imageView;
 @property(nonatomic, assign)CGFloat angle;
 @end
 
@@ -33,10 +32,10 @@
         
         self.angle = 0;
         
-        _imageView = [[UIImageView alloc] initWithFrame:CGRectMake((self.frame.size.width-40)/2, (self.frame.size.height-40)/2, 40, 40)];
-        _imageView.image = [UIImage imageNamed:@"refreshRatate.png"];
+        self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake((self.frame.size.width-40)/2, (self.frame.size.height-40)/2, 40, 40)];
+        self.imageView.image = [UIImage imageNamed:@"refreshRatate.png"];
         
-        [self addSubview:_imageView];
+        [self addSubview:self.imageView];
         
         __weak PGRefreshRotate *weakSelf = self;
         PGAnimationItem *item = [PGAnimationItem itemWithDuration:0.4 delay:0 options:UIViewAnimationOptionCurveLinear|UIViewAnimationOptionAllowUserInteraction animations:^{

@@ -14,7 +14,7 @@
 
 + (UIFont *)systemFontOfSize:(CGFloat)size
 {
-    return [PGUIKitUtil systemFontOfSize:size bScale:YES];
+    return [PGUIKitUtil systemFontOfSize:size bScale:NO];
 }
 
 + (UIFont *)systemFontOfSize:(CGFloat)size bScale:(BOOL)bScale
@@ -35,6 +35,33 @@
     return line;
 }
 
++ (UIView *)createDashLineFrame:(CGRect)frame lineLength:(int)lineLength lineSpacing:(int)lineSpacing lineColor:(UIColor *)lineColor
+{
+    UIView *lineView = [[UIView alloc] initWithFrame:frame];
+    
+    CAShapeLayer *shapeLayer = [CAShapeLayer layer];
+    [shapeLayer setBounds:lineView.bounds];
+    [shapeLayer setPosition:CGPointMake(CGRectGetWidth(lineView.frame) / 2, CGRectGetHeight(lineView.frame))];
+    [shapeLayer setFillColor:[UIColor clearColor].CGColor];
+    //  设置虚线颜色为blackColor
+    [shapeLayer setStrokeColor:lineColor.CGColor];
+    //  设置虚线宽度
+    [shapeLayer setLineWidth:CGRectGetHeight(lineView.frame)];
+    [shapeLayer setLineJoin:kCALineJoinRound];
+    //  设置线宽，线间距
+    [shapeLayer setLineDashPattern:[NSArray arrayWithObjects:[NSNumber numberWithInt:lineLength], [NSNumber numberWithInt:lineSpacing], nil]];
+    //  设置路径
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGPathMoveToPoint(path, NULL, 0, 0);
+    CGPathAddLineToPoint(path, NULL, CGRectGetWidth(lineView.frame), 0);
+    [shapeLayer setPath:path];
+    CGPathRelease(path);
+    
+    [[lineView layer] addSublayer:shapeLayer];
+    
+    return lineView;
+}
+
 + (UIImage *)createImageWithColor:(UIColor *)color
 {
     CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
@@ -47,7 +74,7 @@
     return theImage;
 }
 
-+ (UIImage *)createCornerRadiusImageWithColor:(UIColor *)color cornerRadius:(NSUInteger)cornerRadius
++ (UIImage *)createCornerRadiusImageWithColor:(UIColor *)color cornerRadius:(CGFloat)cornerRadius
 {
     CGRect rect = CGRectMake(0.0f, 0.0f, 2*cornerRadius, 2*cornerRadius);
     UIGraphicsBeginImageContext(rect.size);
@@ -65,12 +92,34 @@
     {
         button.backgroundColor = [UIColor clearColor];
         [button setBackgroundImage:normalImage forState:UIControlStateNormal];
+        [button setBackgroundImage:normalImage forState:UIControlStateDisabled];
         if(selImage)
         {
             [button setBackgroundImage:selImage forState:UIControlStateSelected];
             [button setBackgroundImage:selImage forState:UIControlStateHighlighted];
         }
     }
+}
+
++ (void)setButtonBack:(UIColor *)normalColor selColor:(UIColor *)selColor radius:(float)radius button:(UIButton *)button
+{
+    UIImage *normalImage = nil;
+    UIImage *selImage = nil;
+    if(radius > 0)
+    {
+        normalImage = [PGUIKitUtil createCornerRadiusImageWithColor:normalColor cornerRadius:radius];
+        selImage = [PGUIKitUtil createCornerRadiusImageWithColor:selColor cornerRadius:radius];
+        
+        normalImage = [normalImage resizableImageWithCapInsets:UIEdgeInsetsMake(radius, radius, radius, radius)];
+        selImage = [selImage resizableImageWithCapInsets:UIEdgeInsetsMake(radius, radius, radius, radius)];
+    }
+    else
+    {
+        normalImage = [PGUIKitUtil createImageWithColor:normalColor];
+        selImage = [PGUIKitUtil createImageWithColor:selColor];
+    }
+    
+    [PGUIKitUtil addButtonBackImage:normalImage sel:selImage button:button];
 }
 
 + (CGRect)CGGetBoundsWithFrame:(CGRect)frame
@@ -142,6 +191,8 @@
         textField.rightView = rView;
         textField.rightViewMode = UITextFieldViewModeAlways;
     }
+    
+    textField.autocorrectionType = UITextAutocorrectionTypeNo;
     
     return textField;
 }

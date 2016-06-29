@@ -18,6 +18,7 @@
         backgroundView.backgroundColors = [NSArray arrayWithObjects:(id)TABLECELLBACKGROUNDCOLOR.CGColor, nil];
 //        backgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
         self.backgroundView = backgroundView;
+        self.backgroundView.backgroundColor = TABLECELLBACKGROUNDCOLOR;
         
         PGTableCellBackView *selectedBackgroundView = [[PGTableCellBackView alloc] initWithFrame:CGRectZero];
         selectedBackgroundView.backgroundColors = [NSArray arrayWithObjects:(id)TABLECELLSELECTEDCOLOR.CGColor, nil];

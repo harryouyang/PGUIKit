@@ -18,9 +18,13 @@
 
 + (UIImage *)createImageWithColor:(UIColor *)color;
 
-+ (UIImage *)createCornerRadiusImageWithColor:(UIColor *)color cornerRadius:(NSUInteger)cornerRadius;
++ (UIView *)createDashLineFrame:(CGRect)frame lineLength:(int)lineLength lineSpacing:(int)lineSpacing lineColor:(UIColor *)lineColor;
+
++ (UIImage *)createCornerRadiusImageWithColor:(UIColor *)color cornerRadius:(CGFloat)cornerRadius;
 
 + (void)addButtonBackImage:(UIImage *)normalImage sel:(UIImage *)selImage button:(UIButton *)button;
+
++ (void)setButtonBack:(UIColor *)normalColor selColor:(UIColor *)selColor radius:(float)radius button:(UIButton *)button;
 
 + (CGRect)CGGetBoundsWithFrame:(CGRect)frame;
 

@@ -107,7 +107,8 @@
             [UIView animateWithDuration:item.duration delay:item.delay options:item.options animations:item.animations completion:^(BOOL finished) {
                 [self animationFinished];
             }];
-        } else
+        }
+        else
         {
             [UIView animateWithDuration:item.duration delay:item.delay options:item.options animations:item.animations completion:nil];
         }

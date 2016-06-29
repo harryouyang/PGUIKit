@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 typedef void(^PGBarButtonItemActionBlock)(void);
+typedef void(^PGAlertActionBlock)(NSInteger alertTag, NSInteger actionIndex);
+typedef UIView *(^PGCustomProgressViewBlock)(void);
 
 @interface PGBaseViewController : UIViewController
 
@@ -25,6 +27,8 @@ typedef void(^PGBarButtonItemActionBlock)(void);
 
 @property(nonatomic, assign)CGPoint point;
 @property(nonatomic, assign)float noffset;
+
+@property(nonatomic, copy)PGCustomProgressViewBlock progressViewBlock;
 
 /**
  *  统一设置背景图片
@@ -62,7 +66,16 @@ typedef void(^PGBarButtonItemActionBlock)(void);
 - (void)viewhandleSingleTap:(UITapGestureRecognizer *)gesture;
 
 #pragma mark -
+- (void)showErrorView:(UIView *)pView flag:(NSString *)viewFlag errorView:(UIView * (^)(void))errorView;
+
+- (void)hideErrorView:(UIView *)pView flag:(NSString *)viewFlag;
+
+- (void)hideErrorView:(NSString *)viewFlag;
+
+#pragma mark -
 - (void)showDataLoadErrorView;
+
+- (void)showDataLoadErrorView:(UIImage* (^)(void))imageInfo rect:(CGRect (^)(void))rectInfo;
 
 - (void)hideDataLoadErrorView;
 
@@ -76,6 +89,8 @@ typedef void(^PGBarButtonItemActionBlock)(void);
 - (void)showTitle:(NSString *)szTitle msg:(NSString *)szMsg;
 
 - (void)showMsg:(NSString *)szMsg;
+
+- (void)showAskAlertTitle:(NSString *)title message:(NSString *)message tag:(NSInteger)tag action:(PGAlertActionBlock)block cancelActionTitle:(NSString *)cancelTitle otherActionsTitles:(NSString *)actionTitles,...;
 
 - (void)showProgressView:(NSString *)text;
 

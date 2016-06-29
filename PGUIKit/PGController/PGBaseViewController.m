@@ -10,6 +10,7 @@
 #import "PGProgressView.h"
 #import "PGUIHelper.h"
 #import "PGUIExtend.h"
+#import "PGAlertView.h"
 
 #define KEYBOARDFRAMEWILLCHANGE2         @"KBWFC"
 
@@ -20,6 +21,9 @@
 @property(nonatomic, assign)BOOL bShowProgressView;
 
 @property(nonatomic, strong)UIView *dataLoadErrorView;
+
+@property(nonatomic, strong)NSMutableDictionary *allErrorView;
+
 @end
 
 @implementation PGBaseViewController
@@ -82,6 +86,8 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    self.allErrorView = [[NSMutableDictionary alloc] init];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -192,11 +198,78 @@
 }
 
 #pragma mark -
+- (void)showErrorView:(UIView *)pView flag:(NSString *)viewFlag errorView:(UIView * (^)(void))errorView
+{
+    if(errorView == nil)
+    {
+        return;
+    }
+    
+    UIView *view = errorView();
+    if(view == nil)
+    {
+        return;
+    }
+    
+    NSString *szControllerClassName = NSStringFromClass([self class]);
+    NSString *szClassName = NSStringFromClass([pView class]);
+    NSString *szTag = [NSString stringWithFormat:@"%@_%@",szControllerClassName, szClassName];
+    if(viewFlag != nil && viewFlag.length > 0)
+    {
+        szTag = [NSString stringWithFormat:@"%@_%@_%@",szControllerClassName, szClassName, viewFlag];
+    }
+    
+    [self hideErrorView:szTag];
+    
+    NSLog(@"<<-----show errorView:  %@ ----->", szTag);
+    [pView addSubview:view];
+    [self.allErrorView setObject:view forKey:szTag];
+}
+
+- (void)hideErrorView:(UIView *)pView flag:(NSString *)viewFlag
+{
+    NSString *szControllerClassName = NSStringFromClass([self class]);
+    NSString *szClassName = NSStringFromClass([pView class]);
+    NSString *szTag = [NSString stringWithFormat:@"%@_%@",szControllerClassName, szClassName];
+    if(viewFlag != nil && viewFlag.length > 0)
+    {
+        szTag = [NSString stringWithFormat:@"%@_%@_%@",szControllerClassName, szClassName, viewFlag];
+    }
+    
+    [self hideErrorView:szTag];
+}
+
+- (void)hideErrorView:(NSString *)viewFlag
+{
+    if(viewFlag == nil || viewFlag.length < 1)
+    {
+        return;
+    }
+    
+    UIView *oldView = [self.allErrorView objectForKey:viewFlag];
+    if(oldView != nil)
+    {
+        NSLog(@"<<-----hide errorView:  %@ ----->", viewFlag);
+        [oldView removeFromSuperview];
+        [self.allErrorView removeObjectForKey:viewFlag];
+    }
+}
+
+#pragma mark -
 - (void)showDataLoadErrorView
+{
+    [self showDataLoadErrorView:^UIImage *{
+        return [UIImage imageNamed:@"load_error.png"];
+    } rect:^CGRect{
+        return CGRectMake(0, 0, 36, 36);
+    }];
+}
+
+- (void)showDataLoadErrorView:(UIImage* (^)(void))imageInfo rect:(CGRect (^)(void))rectInfo
 {
     if(_dataLoadErrorView == nil)
     {
-        _dataLoadErrorView = [[UIView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar!=nil?CGRectGetMaxY(self.navigationController.navigationBar.frame):0, self.mainFrame.size.width, self.mainFrame.size.height-(self.navigationController.navigationBar!=nil?CGRectGetHeight(self.navigationController.navigationBar.frame):0))];
+        _dataLoadErrorView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.mainFrame.size.width, self.mainFrame.size.height)];
         _dataLoadErrorView.backgroundColor = UIColorFromRGB(0xdcdbdb);
         [self.view addSubview:_dataLoadErrorView];
         
@@ -205,8 +278,9 @@
         [_dataLoadErrorView addSubview:errorView];
         errorView.userInteractionEnabled = YES;
         
-        UIImageView *errorImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 36, 36)];
-        errorImage.image = [UIImage imageNamed:@"load_error.png"];
+        CGRect rc = rectInfo();
+        UIImageView *errorImage = [[UIImageView alloc] initWithFrame:rc];
+        errorImage.image = imageInfo();
         [errorView addSubview:errorImage];
         errorImage.center = errorView.center;
         errorImage.userInteractionEnabled = YES;
@@ -271,49 +345,104 @@
 #pragma mark -
 - (void)showTitle:(NSString *)szTitle msg:(NSString *)szMsg
 {
-    if(IOS9)
-    {
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:szTitle message:szMsg preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
-        [alertController addAction:okAction];
-        [self presentViewController:alertController animated:YES completion:nil];
-    }
-    else
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:szTitle message:szMsg delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
-        [alert show];
-    }
-}
-
-- (void)showMsg:(NSString *)szMsg
-{
-    [self showTitle:nil msg:szMsg];
+    [self showAskAlertTitle:szTitle message:szMsg tag:0 action:nil cancelActionTitle:@"确定" otherActionsTitles:nil];
+    
 //    if(IOS9)
 //    {
-//        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:szMsg preferredStyle:UIAlertControllerStyleAlert];
+//        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:szTitle message:szMsg preferredStyle:UIAlertControllerStyleAlert];
 //        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
 //        [alertController addAction:okAction];
 //        [self presentViewController:alertController animated:YES completion:nil];
 //    }
 //    else
 //    {
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:szMsg delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:szTitle message:szMsg delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
 //        [alert show];
 //    }
+}
+
+- (void)showMsg:(NSString *)szMsg
+{
+    [self showTitle:nil msg:szMsg];
+}
+
+- (void)showAskAlertTitle:(NSString *)title message:(NSString *)message tag:(NSInteger)tag action:(PGAlertActionBlock)block cancelActionTitle:(NSString *)cancelTitle otherActionsTitles:(NSString *)actionTitles,...
+{
+    NSMutableArray *arrayTitles = [[NSMutableArray alloc] init];
+    [arrayTitles addObject:cancelTitle];
+    
+    NSString *szActionTitle = nil;
+    va_list argumentList;
+    if(actionTitles)
+    {
+        [arrayTitles addObject:actionTitles];
+        va_start(argumentList, actionTitles);
+        szActionTitle = va_arg(argumentList, NSString *);
+        while(szActionTitle)
+        {
+            [arrayTitles addObject:szActionTitle];
+            szActionTitle = va_arg(argumentList, NSString *);
+        }
+        
+        va_end(argumentList);
+    }
+    
+    if(IOS9)
+    {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+        for(NSInteger i = 0; i < arrayTitles.count; i++)
+        {
+            NSString *string = [arrayTitles objectAtIndex:i];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:string style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                if(block)
+                {
+                    block(tag, i);
+                }
+            }];
+            [alertController addAction:okAction];
+        }
+        [self presentViewController:alertController animated:YES completion:nil];
+    }
+    else
+    {
+        PGAlertView *alert = [[PGAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:cancelTitle otherButtonTitles:actionTitles, nil];
+        alert.alertActionBlock = block;
+        [alert show];
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if([alertView isKindOfClass:[PGAlertView class]])
+    {
+        if(((PGAlertView *)alertView).alertActionBlock)
+        {
+            ((PGAlertView *)alertView).alertActionBlock(alertView.tag, buttonIndex);
+        }
+    }
 }
 
 - (void)showProgressView:(NSString *)text
 {
     if(self.progressView == nil)
     {
-        self.progressView = [[PGProgressView alloc] initBgColor:UIColorFromRGBA(0x858585, 0.8) apla:1.0 font:nil textColor:nil activeColor:[UIColor whiteColor]];
-        self.progressView.type = EProgressViewTypeNone;
-        self.progressView.layer.cornerRadius = 5.0;
+        if(self.progressViewBlock)
+        {
+            self.progressView = (PGProgressView *)self.progressViewBlock();
+        }
+        else
+        {
+            self.progressView = [[PGProgressView alloc] initBgColor:UIColorFromRGBA(0x858585, 0.8) apla:1.0 font:nil textColor:nil activeColor:[UIColor whiteColor]];
+            self.progressView.type = EProgressViewTypeNone;
+            self.progressView.layer.cornerRadius = 5.0;
+        }
+        
     }
     
     if(!self.bShowProgressView)
     {
-        UIView *bgView = [[UIView alloc] initWithFrame:CGGetBoundsWithFrame(self.mainFrame)];
+        NSLog(@"====>>>%@", [NSValue valueWithCGRect:self.mainFrame]);
+        UIView *bgView = [[UIView alloc] initWithFrame:CGGetBoundsWithFrame(CGRectMake(0, 0, self.viewWidth, self.viewHeight))];
         bgView.backgroundColor = [UIColor clearColor];
         [bgView addSubview:self.progressView];
         
