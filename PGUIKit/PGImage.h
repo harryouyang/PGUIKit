@@ -15,4 +15,7 @@
 
 - (UIImage *)scaledImageToSize:(CGSize)scaledSize;
 
+/** 给UIImage添加生成圆角图片 */
+- (UIImage *)imageWithCornerRadius:(CGFloat)radius;
+
 @end

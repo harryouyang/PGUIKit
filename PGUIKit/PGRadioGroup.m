@@ -19,6 +19,7 @@
     if(self = [super init])
     {
         self.arrayChecks = [[NSMutableArray alloc] init];
+        _curCheckIndex = -1;
     }
     return self;
 }
@@ -27,6 +28,7 @@
 {
     if(self = [super init])
     {
+        _curCheckIndex = -1;
         self.arrayChecks = [[NSMutableArray alloc] init];
         if(array && array.count > 0)
         {
@@ -50,6 +52,11 @@
 - (void)setCurCheckIndex:(NSInteger)curCheckIndex
 {
     if(curCheckIndex < 0 || curCheckIndex >= self.arrayChecks.count)
+    {
+        return;
+    }
+    
+    if(_curCheckIndex == curCheckIndex)
     {
         return;
     }
@@ -83,6 +90,7 @@
 {
     if(bCheck)
     {
+        NSInteger j = 0;
         for(NSInteger i = 0; i < self.arrayChecks.count; i++)
         {
             PGCheckView *cv = [self.arrayChecks objectAtIndex:i];
@@ -92,13 +100,18 @@
             }
             else
             {
-                _curCheckIndex = i;
+                j = i;
             }
         }
         
-        if(self.delegate && [self.delegate respondsToSelector:@selector(radioGroup:didChanged:index:)])
+        if(_curCheckIndex != j)
         {
-            [self.delegate radioGroup:self didChanged:checkView index:_curCheckIndex];
+            _curCheckIndex = j;
+        
+            if(self.delegate && [self.delegate respondsToSelector:@selector(radioGroup:didChanged:index:)])
+            {
+                [self.delegate radioGroup:self didChanged:checkView index:_curCheckIndex];
+            }
         }
     }
 }

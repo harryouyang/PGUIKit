@@ -441,7 +441,6 @@
     
     if(!self.bShowProgressView)
     {
-        NSLog(@"====>>>%@", [NSValue valueWithCGRect:self.mainFrame]);
         UIView *bgView = [[UIView alloc] initWithFrame:CGGetBoundsWithFrame(CGRectMake(0, 0, self.viewWidth, self.viewHeight))];
         bgView.backgroundColor = [UIColor clearColor];
         [bgView addSubview:self.progressView];
